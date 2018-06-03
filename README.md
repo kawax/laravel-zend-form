@@ -13,6 +13,16 @@ https://docs.zendframework.com/zend-form/
 composer require revolution/laravel-zend-form
 ```
 
+### Suggest from ZendForm
+https://github.com/zendframework/zend-form/blob/master/composer.json
+
+```json
+        "zendframework/zend-captcha": "^2.7.1, required for using CAPTCHA form elements",
+        "zendframework/zend-code": "^2.6 || ^3.0, required to use zend-form annotations support",
+        "zendframework/zend-eventmanager": "^2.6.2 || ^3.0, reuired for zend-form annotations support",
+        "zendframework/zendservice-recaptcha": "in order to use the ReCaptcha form element"
+```
+
 ## Demo
 https://github.com/kawax/laravel-zend-form-project
 
