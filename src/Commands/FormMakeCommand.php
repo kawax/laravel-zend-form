@@ -3,7 +3,6 @@
 namespace Revolution\ZendForm\Commands;
 
 use Illuminate\Console\GeneratorCommand;
-use Symfony\Component\Console\Input\InputOption;
 
 class FormMakeCommand extends GeneratorCommand
 {
