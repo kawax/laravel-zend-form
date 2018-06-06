@@ -63,7 +63,7 @@ class Bootstrap4Horizon extends Form
             $html .= '<button type="submit" class="';
             $html .= $element->getAttribute('class');
             $html .= '">';
-            $html .= $element->getAttribute('value');
+            $html .= $element->getValue();
             $html .= '</button>';
         } else {
             $html .= $this->getView()->formElement($element);
