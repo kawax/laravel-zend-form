@@ -68,6 +68,12 @@ class Uikit3Horizon extends Form
             $html .= $this->getView()->formElement($element);
         }
 
+        if ($element->getOption('help-text')) {
+            $html .= '<div class="uk-text-meta">';
+            $html .= $element->getOption('help-text');
+            $html .= '</div>';
+        }
+
         $html .= '</div>';
 
         $html .= '</div>';

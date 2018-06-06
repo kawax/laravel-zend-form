@@ -36,6 +36,7 @@ class TestForm extends ZendForm
         $name->setOptions([
             'wrapper-class' => 'form-group row',
             'element-class' => 'col-sm-10',
+            'help-text'     => '<code>help</code> text',
         ]);
 
         $this->add($name);

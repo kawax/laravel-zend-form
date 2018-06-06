@@ -44,11 +44,24 @@ class FormTest extends TestCase
         $this->assertInstanceOf(PhpRenderer::class, $renderer);
     }
 
-    public function testHelperHorizon()
+    public function testHelperBSHorizon()
     {
         $form = new TestForm();
 
         $html = $form->bootstrap4horizon($form);
+
+        dump($html);
+
+        $this->assertStringStartsWith('<form', $html);
+    }
+
+    public function testHelperUIHorizon()
+    {
+        $form = new TestForm();
+
+        $html = $form->uikit3horizon($form);
+
+        dump($html);
 
         $this->assertStringStartsWith('<form', $html);
     }
