@@ -47,7 +47,7 @@ class SampleForm extends ZendForm
     /**
      * Create a new form.
      *
-     * @param  null|string $name
+     * @param null|string $name
      *
      * @return void
      */
@@ -68,11 +68,14 @@ class SampleForm extends ZendForm
         ]);
         $name->setLabel('Your name');
         $name->setLabelAttributes([
-            'class' => 'col-form-label',
+            'class' => 'col-sm-2 col-form-label',
+        ]);
+        $name->setOptions([
+            'wrapper-class' => 'form-group row',
+            'element-class' => 'col-sm-10',
         ]);
 
         $this->add($name);
-
 
         $this->add([
             'type'       => Element\Email::class,
@@ -85,8 +88,10 @@ class SampleForm extends ZendForm
             'options'    => [
                 'label'            => 'Your email address',
                 'label_attributes' => [
-                    'class' => 'col-form-label',
+                    'class' => 'col-sm-2 col-form-label',
                 ],
+                'wrapper-class'    => 'form-group row',
+                'element-class'    => 'col-sm-10',
             ],
         ]);
 
@@ -103,7 +108,7 @@ class SampleForm extends ZendForm
             'type'       => 'Submit',
             'attributes' => [
                 'value' => 'Submit',
-                'class' => 'btn btn-primary mt-2',
+                'class' => 'btn btn-primary',
             ],
         ]);
     }
