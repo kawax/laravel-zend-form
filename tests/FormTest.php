@@ -50,8 +50,6 @@ class FormTest extends TestCase
 
         $html = $form->bootstrap4horizon($form);
 
-        dump($html);
-
         $this->assertStringStartsWith('<form', $html);
     }
 }
