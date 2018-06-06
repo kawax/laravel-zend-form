@@ -43,7 +43,9 @@ class Uikit3Horizon extends Form
      */
     protected function row(ElementInterface $element)
     {
-        $html = '<div>';
+        $html = '<div class="';
+        $html .= $element->getOption('wrapper-class') ?? 'uk-margin';
+        $html .= '">';
 
         $label = $element->getLabel();
         $type = $element->getAttribute('type');
