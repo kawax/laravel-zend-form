@@ -7,7 +7,7 @@ use Zend\Form\FieldsetInterface;
 use Zend\Form\FormInterface;
 use Zend\Form\ElementInterface;
 
-class Bootstrap4Horizon extends Form
+class Uikit3Horizon extends Form
 {
     /**
      * Render a form from the provided $form,
@@ -43,9 +43,7 @@ class Bootstrap4Horizon extends Form
      */
     protected function row(ElementInterface $element)
     {
-        $html = '<div class="';
-        $html .= $element->getOption('wrapper-class') ?? 'form-group row';
-        $html .= '">';
+        $html = '<div>';
 
         $label = $element->getLabel();
         $type = $element->getAttribute('type');
@@ -55,12 +53,12 @@ class Bootstrap4Horizon extends Form
         }
 
         $html .= '<div class="';
-        $html .= $element->getOption('element-class') ?? 'col-sm-10';
+        $html .= $element->getOption('element-class') ?? 'uk-form-controls';
         $html .= '">';
 
         if ($type === 'submit') {
             $html .= '<button type="submit" class="';
-            $html .= $element->getAttribute('class') ?? 'btn btn-primary';
+            $html .= $element->getAttribute('class') ?? 'uk-button uk-button-primary';
             $html .= '">';
             $html .= $element->getValue() ?? 'Submit';
             $html .= '</button>';
