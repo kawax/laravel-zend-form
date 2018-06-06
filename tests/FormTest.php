@@ -4,6 +4,9 @@ namespace Tests;
 
 use Revolution\ZendForm\Form;
 
+use Zend\View\Renderer\RendererInterface;
+use Zend\View\Renderer\PhpRenderer;
+
 class FormTest extends TestCase
 {
     public function testInstance()
@@ -32,5 +35,21 @@ class FormTest extends TestCase
         $form = new TestForm();
 
         $this->assertStringStartsWith('<input type="text" name="name"', $form->formInput($form->get('name')));
+    }
+
+    public function testRenderer()
+    {
+        $renderer = app(RendererInterface::class);
+
+        $this->assertInstanceOf(PhpRenderer::class, $renderer);
+    }
+
+    public function testHelperHorizon()
+    {
+        $form = new TestForm();
+
+        $html = $form->bootstrap4horizon($form);
+
+        $this->assertStringStartsWith('<form', $html);
     }
 }

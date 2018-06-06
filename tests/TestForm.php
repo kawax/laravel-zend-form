@@ -31,7 +31,11 @@ class TestForm extends ZendForm
         ]);
         $name->setLabel('Your name');
         $name->setLabelAttributes([
-            'class' => 'col-form-label',
+            'class' => 'col-sm-2 col-form-label',
+        ]);
+        $name->setOptions([
+            'wrapper-class' => 'form-group row',
+            'element-class' => 'col-sm-10',
         ]);
 
         $this->add($name);
@@ -48,7 +52,7 @@ class TestForm extends ZendForm
             'options'    => [
                 'label'            => 'Your email address',
                 'label_attributes' => [
-                    'class' => 'col-form-label',
+                    'class' => 'col-sm-2 col-form-label',
                 ],
             ],
         ]);

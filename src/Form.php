@@ -3,34 +3,18 @@
 namespace Revolution\ZendForm;
 
 use Zend\Form\Form as ZendForm;
-use Zend\View\Renderer\PhpRenderer;
-use Zend\Form\ConfigProvider;
-use Zend\View\HelperPluginManager;
-use Zend\ServiceManager\ServiceManager;
+use Zend\View\Renderer\RendererInterface;
 
 use Illuminate\Support\HtmlString;
 
 class Form extends ZendForm
 {
     /**
-     * @var PhpRenderer
+     * @return RendererInterface
      */
-    protected $renderer;
-
-    /**
-     * @return PhpRenderer
-     */
-    protected function getRenderer(): PhpRenderer
+    protected function getRenderer(): RendererInterface
     {
-        if (is_null($this->renderer)) {
-            $this->renderer = new PhpRenderer;
-            $configProvider = new ConfigProvider;
-            $pluginManager = new HelperPluginManager(new ServiceManager, $configProvider()['view_helpers']);
-
-            $this->renderer->setHelperPluginManager($pluginManager);
-        }
-
-        return $this->renderer;
+        return app(RendererInterface::class);
     }
 
     /**
