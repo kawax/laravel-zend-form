@@ -57,14 +57,4 @@ class ZendFormServiceProvider extends ServiceProvider
             return $renderer;
         });
     }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return string[]
-     */
-    public function provides()
-    {
-        return [RendererInterface::class];
-    }
 }
