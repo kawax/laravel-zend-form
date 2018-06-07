@@ -68,7 +68,7 @@ class Bootstrap4Horizon extends Form
             $html .= $this->getView()->formElement($element);
         }
 
-        if ($element->getOption('help-text')) {
+        if (!empty($element->getOption('help-text'))) {
             $html .= '<small class="form-text text-muted">';
             $html .= $element->getOption('help-text');
             $html .= '</small>';
