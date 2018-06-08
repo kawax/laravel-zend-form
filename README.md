@@ -185,6 +185,13 @@ Form object can call Zend's ViewHelper by magic method.
 
 See https://docs.zendframework.com/zend-form/quick-start/
 
+## ViewHelper render
+```php
+{{ $form->render('bootstrap4horizon') }}
+```
+
+https://github.com/kawax/laravel-zend-form/blob/master/docs/helpers.md
+
 ## Validation
 Use Laravel's FormRequest.
 

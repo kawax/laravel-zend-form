@@ -6,6 +6,10 @@
 ```
 
 ```php
+ {{ $form->render('bootstrap4horizon') }}
+```
+
+```php
 $name = new Element\Text('name');
 $name->setAttributes([
     'id'    => 'name',
@@ -36,6 +40,10 @@ $name->setOptions([
 ## UIkit3 Horizontal
 ```php
  {!! $form->uikit3horizon($form) !!}
+```
+
+```php
+ {{ $form->render('uikit3horizon') }}
 ```
 
 ```php

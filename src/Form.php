@@ -18,11 +18,21 @@ class Form extends ZendForm
     }
 
     /**
+     * @param string $helper
+     *
+     * @throws \BadMethodCallException
+     *
      * @return HtmlString
      */
-    public function render(): HtmlString
+    public function render(string $helper = 'form'): HtmlString
     {
-        return new HtmlString($this->getRenderer()->form($this));
+        $renderer = $this->getRenderer();
+
+        if (is_callable([$renderer, $helper])) {
+            return new HtmlString(call_user_func_array([$renderer, $helper], [$this]));
+        }
+
+        throw new \BadMethodCallException(sprintf('Method [%s] does not exist.', $helper));
     }
 
     /**

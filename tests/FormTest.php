@@ -65,4 +65,15 @@ class FormTest extends TestCase
 
         $this->assertContains('uk-text-meta', $html);
     }
+
+    public function testFormRenderWithHelper()
+    {
+        $form = new TestForm();
+
+        $html = (string)$form->render('bootstrap4horizon');
+
+        dump($html);
+
+        $this->assertContains('form-text text-muted', $html);
+    }
 }
