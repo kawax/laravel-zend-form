@@ -103,3 +103,9 @@ return [
 ```php
  {!! $form->custom($form) !!}
 ```
+
+or 
+
+```php
+ {{ $form->render('custom') }}
+```
