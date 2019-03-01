@@ -2,10 +2,11 @@
 
 namespace Revolution\ZendForm;
 
+use Illuminate\Container\Container;
+use Illuminate\Support\HtmlString;
+
 use Zend\Form\Form as ZendForm;
 use Zend\View\Renderer\RendererInterface;
-
-use Illuminate\Support\HtmlString;
 
 class Form extends ZendForm
 {
@@ -14,7 +15,7 @@ class Form extends ZendForm
      */
     protected function getRenderer(): RendererInterface
     {
-        return app(RendererInterface::class);
+        return Container::getInstance()->make(RendererInterface::class);
     }
 
     /**
