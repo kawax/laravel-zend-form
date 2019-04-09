@@ -1,10 +1,12 @@
 # Laravel Zend Form
 [![Build Status](https://travis-ci.org/kawax/laravel-zend-form.svg?branch=master)](https://travis-ci.org/kawax/laravel-zend-form)
 
+![Laravel Zend Form](screenshot.png)
+
 https://docs.zendframework.com/zend-form/
 
 ## Requirements
-- PHP >= 7.0
+- PHP >= 7.1
 - Laravel >= 5.5
 
 ## Installation

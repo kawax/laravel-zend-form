@@ -26,7 +26,7 @@ class ZendFormServiceProvider extends ServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/../config/zend-form.php' => config_path('zend-form.php'),
+            __DIR__.'/../config/zend-form.php' => config_path('zend-form.php'),
         ]);
     }
 
@@ -38,7 +38,7 @@ class ZendFormServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/zend-form.php', 'zend-form'
+            __DIR__.'/../config/zend-form.php', 'zend-form'
         );
 
         $this->app->singleton(RendererInterface::class, function ($app) {
@@ -46,7 +46,7 @@ class ZendFormServiceProvider extends ServiceProvider
             $configProvider = new ConfigProvider;
 
             $config = array_merge_recursive(
-                $configProvider()['view_helpers'],
+                $configProvider->getViewHelperConfig(),
                 $app['config']['zend-form']
             );
 

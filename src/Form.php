@@ -3,6 +3,7 @@
 namespace Revolution\ZendForm;
 
 use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\HtmlString;
 
 use Zend\Form\Form as ZendForm;
@@ -12,6 +13,8 @@ class Form extends ZendForm
 {
     /**
      * @return RendererInterface
+     *
+     * @throws BindingResolutionException
      */
     protected function getRenderer(): RendererInterface
     {
@@ -19,11 +22,12 @@ class Form extends ZendForm
     }
 
     /**
-     * @param string $helper
-     *
-     * @throws \BadMethodCallException
+     * @param  string  $helper
      *
      * @return HtmlString
+     *
+     * @throws BindingResolutionException
+     * @throws \BadMethodCallException
      */
     public function render(string $helper = 'form'): HtmlString
     {
@@ -37,12 +41,13 @@ class Form extends ZendForm
     }
 
     /**
-     * @param string $method
-     * @param array  $arguments
-     *
-     * @throws \BadMethodCallException
+     * @param  string  $method
+     * @param  array  $arguments
      *
      * @return mixed
+     *
+     * @throws BindingResolutionException
+     * @throws \BadMethodCallException
      */
     public function __call($method, $arguments)
     {
