@@ -1,5 +1,7 @@
 # Laravel Zend Form
 [![Build Status](https://travis-ci.org/kawax/laravel-zend-form.svg?branch=master)](https://travis-ci.org/kawax/laravel-zend-form)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7bc3ab814fbd2454b6ec/maintainability)](https://codeclimate.com/github/kawax/laravel-zend-form/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7bc3ab814fbd2454b6ec/test_coverage)](https://codeclimate.com/github/kawax/laravel-zend-form/test_coverage)
 
 ![Laravel Zend Form](screenshot.png)
 

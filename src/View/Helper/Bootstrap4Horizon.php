@@ -12,7 +12,7 @@ class Bootstrap4Horizon extends Form
     /**
      * Render a form from the provided $form,
      *
-     * @param  FormInterface $form
+     * @param  FormInterface  $form
      *
      * @return string
      */
@@ -33,11 +33,11 @@ class Bootstrap4Horizon extends Form
             }
         }
 
-        return $this->openTag($form) . $formContent . $this->closeTag();
+        return $this->openTag($form).$formContent.$this->closeTag();
     }
 
     /**
-     * @param ElementInterface $element
+     * @param  ElementInterface  $element
      *
      * @return string
      */
@@ -58,6 +58,25 @@ class Bootstrap4Horizon extends Form
         $html .= $element->getOption('element-class') ?? 'col-sm-10';
         $html .= '">';
 
+        $html .= $this->submit($element, $type);
+
+        $html .= $this->helpText($element);
+
+        $html .= '</div></div>';
+
+        return $html;
+    }
+
+    /**
+     * @param  ElementInterface  $element
+     * @param  string  $type
+     *
+     * @return string
+     */
+    protected function submit(ElementInterface $element, $type = '')
+    {
+        $html = '';
+
         if ($type === 'submit') {
             $html .= '<button type="submit" class="';
             $html .= $element->getAttribute('class') ?? 'btn btn-primary';
@@ -68,15 +87,23 @@ class Bootstrap4Horizon extends Form
             $html .= $this->getView()->formElement($element);
         }
 
-        if (!empty($element->getOption('help-text'))) {
+        return $html;
+    }
+
+    /**
+     * @param  ElementInterface  $element
+     *
+     * @return string
+     */
+    protected function helpText(ElementInterface $element)
+    {
+        $html = '';
+
+        if (! empty($element->getOption('help-text'))) {
             $html .= '<small class="form-text text-muted">';
             $html .= $element->getOption('help-text');
             $html .= '</small>';
         }
-
-        $html .= '</div>';
-
-        $html .= '</div>';
 
         return $html;
     }
