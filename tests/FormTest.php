@@ -20,7 +20,7 @@ class FormTest extends TestCase
     {
         $form = new TestForm();
 
-        $this->assertContains('<form', (string)$form->render());
+        $this->assertContains('<form', (string) $form->render());
     }
 
     public function testOpenTag()
@@ -50,7 +50,7 @@ class FormTest extends TestCase
 
         $html = $form->bootstrap4horizon($form);
 
-        dump($html);
+        //dump($html);
 
         $this->assertContains('form-text text-muted', $html);
     }
@@ -61,7 +61,7 @@ class FormTest extends TestCase
 
         $html = $form->uikit3horizon($form);
 
-        dump($html);
+        //dump($html);
 
         $this->assertContains('uk-text-meta', $html);
     }
@@ -70,9 +70,9 @@ class FormTest extends TestCase
     {
         $form = new TestForm();
 
-        $html = (string)$form->render('bootstrap4horizon');
+        $html = (string) $form->render('bootstrap4horizon');
 
-        dump($html);
+        //dump($html);
 
         $this->assertContains('form-text text-muted', $html);
     }

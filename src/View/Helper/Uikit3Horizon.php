@@ -3,41 +3,14 @@
 namespace Revolution\ZendForm\View\Helper;
 
 use Zend\Form\View\Helper\Form;
-use Zend\Form\FieldsetInterface;
-use Zend\Form\FormInterface;
 use Zend\Form\ElementInterface;
 
 class Uikit3Horizon extends Form
 {
-    /**
-     * Render a form from the provided $form,
-     *
-     * @param  FormInterface $form
-     *
-     * @return string
-     */
-    public function render(FormInterface $form)
-    {
-        if (method_exists($form, 'prepare')) {
-            $form->prepare();
-        }
-
-        $formContent = '';
-
-        foreach ($form as $element) {
-            if ($element instanceof FieldsetInterface) {
-                //TODO?
-                $formContent .= $this->getView()->formCollection($element);
-            } else {
-                $formContent .= $this->row($element);
-            }
-        }
-
-        return $this->openTag($form) . $formContent . $this->closeTag();
-    }
+    use HelperRender;
 
     /**
-     * @param ElementInterface $element
+     * @param  ElementInterface  $element
      *
      * @return string
      */
@@ -58,6 +31,25 @@ class Uikit3Horizon extends Form
         $html .= $element->getOption('element-class') ?? 'uk-form-controls';
         $html .= '">';
 
+        $html .= $this->submit($element, $type);
+
+        $html .= $this->helpText($element);
+
+        $html .= '</div></div>';
+
+        return $html;
+    }
+
+    /**
+     * @param  ElementInterface  $element
+     * @param  string  $type
+     *
+     * @return string
+     */
+    protected function submit(ElementInterface $element, $type = '')
+    {
+        $html = '';
+
         if ($type === 'submit') {
             $html .= '<button type="submit" class="';
             $html .= $element->getAttribute('class') ?? 'uk-button uk-button-primary';
@@ -68,15 +60,23 @@ class Uikit3Horizon extends Form
             $html .= $this->getView()->formElement($element);
         }
 
-        if (!empty($element->getOption('help-text'))) {
+        return $html;
+    }
+
+    /**
+     * @param  ElementInterface  $element
+     *
+     * @return string
+     */
+    protected function helpText(ElementInterface $element)
+    {
+        $html = '';
+
+        if (! empty($element->getOption('help-text'))) {
             $html .= '<div class="uk-text-meta">';
             $html .= $element->getOption('help-text');
             $html .= '</div>';
         }
-
-        $html .= '</div>';
-
-        $html .= '</div>';
 
         return $html;
     }
