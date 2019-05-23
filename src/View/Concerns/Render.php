@@ -1,11 +1,11 @@
 <?php
 
-namespace Revolution\ZendForm\View\Helper;
+namespace Revolution\ZendForm\View\Concerns;
 
 use Zend\Form\FieldsetInterface;
 use Zend\Form\FormInterface;
 
-trait HelperRender
+trait Render
 {
     /**
      * Render a form from the provided $form,

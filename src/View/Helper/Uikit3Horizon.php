@@ -5,56 +5,17 @@ namespace Revolution\ZendForm\View\Helper;
 use Zend\Form\View\Helper\Form;
 use Zend\Form\ElementInterface;
 
+use Revolution\ZendForm\View\Concerns\{Render, Row, Label, Submit};
+
 class Uikit3Horizon extends Form
 {
-    use HelperRender;
-    use HelperLabel;
+    use Render, Row, Label, Submit;
 
-    /**
-     * @param  ElementInterface  $element
-     *
-     * @return string
-     */
-    protected function row(ElementInterface $element)
-    {
-        $html = '<div class="';
-        $html .= $element->getOption('wrapper-class') ?? 'uk-margin';
-        $html .= '">';
-
-        $html .= $this->label($element);
-
-        $html .= '<div class="';
-        $html .= $element->getOption('element-class') ?? 'uk-form-controls';
-        $html .= '">';
-
-        $html .= $this->submit($element);
-
-        $html .= $this->helpText($element);
-
-        $html .= '</div></div>';
-
-        return $html;
-    }
-
-    /**
-     * @param  ElementInterface  $element
-     *
-     * @return string
-     */
-    protected function submit(ElementInterface $element)
-    {
-        if ($element->getAttribute('type') !== 'submit') {
-            return $this->getView()->formElement($element);
-        }
-
-        $html = '<button type="submit" class="';
-        $html .= $element->getAttribute('class') ?? 'uk-button uk-button-primary';
-        $html .= '">';
-        $html .= $element->getValue() ?? 'Submit';
-        $html .= '</button>';
-
-        return $html;
-    }
+    protected const DEFAULTS = [
+        'wrapper' => 'uk-margin',
+        'element' => 'uk-form-controls',
+        'submit'  => 'uk-button uk-button-primary',
+    ];
 
     /**
      * @param  ElementInterface  $element

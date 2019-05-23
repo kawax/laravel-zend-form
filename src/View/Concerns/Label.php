@@ -1,10 +1,10 @@
 <?php
 
-namespace Revolution\ZendForm\View\Helper;
+namespace Revolution\ZendForm\View\Concerns;
 
 use Zend\Form\ElementInterface;
 
-trait HelperLabel
+trait Label
 {
     /**
      * @param  ElementInterface  $element
