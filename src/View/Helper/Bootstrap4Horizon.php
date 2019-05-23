@@ -20,18 +20,13 @@ class Bootstrap4Horizon extends Form
         $html .= $element->getOption('wrapper-class') ?? 'form-group row';
         $html .= '">';
 
-        $label = $element->getLabel();
-        $type = $element->getAttribute('type');
-
-        if (isset($label) && '' !== $label && $type !== 'hidden') {
-            $html .= $this->getView()->formLabel($element);
-        }
+        $html .= $this->label($element);
 
         $html .= '<div class="';
         $html .= $element->getOption('element-class') ?? 'col-sm-10';
         $html .= '">';
 
-        $html .= $this->submit($element, $type);
+        $html .= $this->submit($element);
 
         $html .= $this->helpText($element);
 
@@ -42,23 +37,41 @@ class Bootstrap4Horizon extends Form
 
     /**
      * @param  ElementInterface  $element
-     * @param  string  $type
      *
      * @return string
      */
-    protected function submit(ElementInterface $element, $type = '')
+    protected function label(ElementInterface $element)
     {
-        $html = '';
+        $label = $element->getLabel();
+        $type = $element->getAttribute('type');
 
-        if ($type === 'submit') {
-            $html .= '<button type="submit" class="';
-            $html .= $element->getAttribute('class') ?? 'btn btn-primary';
-            $html .= '">';
-            $html .= $element->getValue() ?? 'Submit';
-            $html .= '</button>';
-        } else {
-            $html .= $this->getView()->formElement($element);
+        if ($type === 'hidden') {
+            return '';
         }
+
+        if (empty($label)) {
+            return '';
+        } else {
+            return $this->getView()->formLabel($element);
+        }
+    }
+
+    /**
+     * @param  ElementInterface  $element
+     *
+     * @return string
+     */
+    protected function submit(ElementInterface $element)
+    {
+        if ($element->getAttribute('type') !== 'submit') {
+            return $this->getView()->formElement($element);
+        }
+
+        $html = '<button type="submit" class="';
+        $html .= $element->getAttribute('class') ?? 'btn btn-primary';
+        $html .= '">';
+        $html .= $element->getValue() ?? 'Submit';
+        $html .= '</button>';
 
         return $html;
     }
@@ -70,13 +83,13 @@ class Bootstrap4Horizon extends Form
      */
     protected function helpText(ElementInterface $element)
     {
-        $html = '';
-
-        if (! empty($element->getOption('help-text'))) {
-            $html .= '<small class="form-text text-muted">';
-            $html .= $element->getOption('help-text');
-            $html .= '</small>';
+        if (empty($element->getOption('help-text'))) {
+            return '';
         }
+
+        $html = '<small class="form-text text-muted">';
+        $html .= $element->getOption('help-text');
+        $html .= '</small>';
 
         return $html;
     }

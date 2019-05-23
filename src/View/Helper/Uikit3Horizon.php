@@ -20,18 +20,13 @@ class Uikit3Horizon extends Form
         $html .= $element->getOption('wrapper-class') ?? 'uk-margin';
         $html .= '">';
 
-        $label = $element->getLabel();
-        $type = $element->getAttribute('type');
-
-        if (isset($label) && '' !== $label && $type !== 'hidden') {
-            $html .= $this->getView()->formLabel($element);
-        }
+        $html .= $this->label($element);
 
         $html .= '<div class="';
         $html .= $element->getOption('element-class') ?? 'uk-form-controls';
         $html .= '">';
 
-        $html .= $this->submit($element, $type);
+        $html .= $this->submit($element);
 
         $html .= $this->helpText($element);
 
@@ -42,23 +37,41 @@ class Uikit3Horizon extends Form
 
     /**
      * @param  ElementInterface  $element
-     * @param  string  $type
      *
      * @return string
      */
-    protected function submit(ElementInterface $element, $type = '')
+    protected function label(ElementInterface $element)
     {
-        $html = '';
+        $label = $element->getLabel();
+        $type = $element->getAttribute('type');
 
-        if ($type === 'submit') {
-            $html .= '<button type="submit" class="';
-            $html .= $element->getAttribute('class') ?? 'uk-button uk-button-primary';
-            $html .= '">';
-            $html .= $element->getValue() ?? 'Submit';
-            $html .= '</button>';
-        } else {
-            $html .= $this->getView()->formElement($element);
+        if ($type === 'hidden') {
+            return '';
         }
+
+        if (empty($label)) {
+            return '';
+        } else {
+            return $this->getView()->formLabel($element);
+        }
+    }
+
+    /**
+     * @param  ElementInterface  $element
+     *
+     * @return string
+     */
+    protected function submit(ElementInterface $element)
+    {
+        if ($element->getAttribute('type') !== 'submit') {
+            return $this->getView()->formElement($element);
+        }
+
+        $html = '<button type="submit" class="';
+        $html .= $element->getAttribute('class') ?? 'uk-button uk-button-primary';
+        $html .= '">';
+        $html .= $element->getValue() ?? 'Submit';
+        $html .= '</button>';
 
         return $html;
     }
@@ -70,13 +83,13 @@ class Uikit3Horizon extends Form
      */
     protected function helpText(ElementInterface $element)
     {
-        $html = '';
-
-        if (! empty($element->getOption('help-text'))) {
-            $html .= '<div class="uk-text-meta">';
-            $html .= $element->getOption('help-text');
-            $html .= '</div>';
+        if (empty($element->getOption('help-text'))) {
+            return '';
         }
+
+        $html = '<div class="uk-text-meta">';
+        $html .= $element->getOption('help-text');
+        $html .= '</div>';
 
         return $html;
     }
