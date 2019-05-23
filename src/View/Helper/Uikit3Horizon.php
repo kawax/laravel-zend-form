@@ -8,6 +8,7 @@ use Zend\Form\ElementInterface;
 class Uikit3Horizon extends Form
 {
     use HelperRender;
+    use HelperLabel;
 
     /**
      * @param  ElementInterface  $element
@@ -33,27 +34,6 @@ class Uikit3Horizon extends Form
         $html .= '</div></div>';
 
         return $html;
-    }
-
-    /**
-     * @param  ElementInterface  $element
-     *
-     * @return string
-     */
-    protected function label(ElementInterface $element)
-    {
-        $label = $element->getLabel();
-        $type = $element->getAttribute('type');
-
-        if ($type === 'hidden') {
-            return '';
-        }
-
-        if (empty($label)) {
-            return '';
-        } else {
-            return $this->getView()->formLabel($element);
-        }
     }
 
     /**
