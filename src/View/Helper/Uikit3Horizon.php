@@ -3,35 +3,22 @@
 namespace Revolution\ZendForm\View\Helper;
 
 use Zend\Form\View\Helper\Form;
-use Zend\Form\ElementInterface;
 
-use Revolution\ZendForm\View\Concerns\{Render, Row, Label, Submit};
+use Revolution\ZendForm\View\Concerns\Render;
+use Revolution\ZendForm\View\Concerns\Row;
+use Revolution\ZendForm\View\Concerns\Label;
+use Revolution\ZendForm\View\Concerns\Submit;
+use Revolution\ZendForm\View\Concerns\Help;
 
 class Uikit3Horizon extends Form
 {
-    use Render, Row, Label, Submit;
+    use Render, Row, Label, Submit, Help;
 
     protected const DEFAULTS = [
-        'wrapper' => 'uk-margin',
-        'element' => 'uk-form-controls',
-        'submit'  => 'uk-button uk-button-primary',
+        'wrapper'    => 'uk-margin',
+        'element'    => 'uk-form-controls',
+        'submit'     => 'uk-button uk-button-primary',
+        'help_open'  => '<div class="uk-text-meta">',
+        'help_close' => '</div>',
     ];
-
-    /**
-     * @param  ElementInterface  $element
-     *
-     * @return string
-     */
-    protected function helpText(ElementInterface $element)
-    {
-        if (empty($element->getOption('help-text'))) {
-            return '';
-        }
-
-        $html = '<div class="uk-text-meta">';
-        $html .= $element->getOption('help-text');
-        $html .= '</div>';
-
-        return $html;
-    }
 }
