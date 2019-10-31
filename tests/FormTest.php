@@ -20,21 +20,21 @@ class FormTest extends TestCase
     {
         $form = new TestForm();
 
-        $this->assertContains('<form', (string) $form->render());
+        $this->assertStringContainsString('<form', (string) $form->render());
     }
 
     public function testOpenTag()
     {
         $form = new TestForm();
 
-        $this->assertContains('<form', $form->form()->openTag($form));
+        $this->assertStringContainsString('<form', $form->form()->openTag($form));
     }
 
     public function testInput()
     {
         $form = new TestForm();
 
-        $this->assertContains('<input type="text" name="name"', $form->formInput($form->get('name')));
+        $this->assertStringContainsString('<input type="text" name="name"', $form->formInput($form->get('name')));
     }
 
     public function testRenderer()
@@ -52,7 +52,7 @@ class FormTest extends TestCase
 
         //dump($html);
 
-        $this->assertContains('form-text text-muted', $html);
+        $this->assertStringContainsString('form-text text-muted', $html);
     }
 
     public function testHelperUIHorizon()
@@ -63,7 +63,7 @@ class FormTest extends TestCase
 
         //dump($html);
 
-        $this->assertContains('uk-text-meta', $html);
+        $this->assertStringContainsString('uk-text-meta', $html);
     }
 
     public function testFormRenderWithHelper()
@@ -74,6 +74,6 @@ class FormTest extends TestCase
 
         //dump($html);
 
-        $this->assertContains('form-text text-muted', $html);
+        $this->assertStringContainsString('form-text text-muted', $html);
     }
 }
