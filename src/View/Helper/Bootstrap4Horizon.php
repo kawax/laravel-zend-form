@@ -12,7 +12,11 @@ use Revolution\ZendForm\View\Concerns\Help;
 
 class Bootstrap4Horizon extends Form
 {
-    use Render, Row, Label, Submit, Help;
+    use Row;
+    use Help;
+    use Label;
+    use Submit;
+    use Render;
 
     protected const DEFAULTS = [
         'wrapper'    => 'form-group row',

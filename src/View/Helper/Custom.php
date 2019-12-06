@@ -15,7 +15,8 @@ use Revolution\ZendForm\View\Concerns\Label;
  */
 class Custom extends Form
 {
-    use Render, Label;
+    use Label;
+    use Render;
 
     protected const DEFAULTS = [
         'wrapper'    => 'form-group row',

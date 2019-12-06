@@ -12,7 +12,11 @@ use Revolution\ZendForm\View\Concerns\Help;
 
 class Uikit3Horizon extends Form
 {
-    use Render, Row, Label, Submit, Help;
+    use Row;
+    use Help;
+    use Label;
+    use Submit;
+    use Render;
 
     protected const DEFAULTS = [
         'wrapper'    => 'uk-margin',

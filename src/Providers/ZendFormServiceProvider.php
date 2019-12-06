@@ -20,14 +20,18 @@ class ZendFormServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->commands([
-                Commands\FormMakeCommand::class,
-            ]);
+            $this->commands(
+                [
+                    Commands\FormMakeCommand::class,
+                ]
+            );
         }
 
-        $this->publishes([
-            __DIR__.'/../config/zend-form.php' => config_path('zend-form.php'),
-        ]);
+        $this->publishes(
+            [
+                __DIR__.'/../config/zend-form.php' => config_path('zend-form.php'),
+            ]
+        );
     }
 
     /**
@@ -38,23 +42,27 @@ class ZendFormServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/zend-form.php', 'zend-form'
+            __DIR__.'/../config/zend-form.php',
+            'zend-form'
         );
 
-        $this->app->singleton(RendererInterface::class, function ($app) {
-            $renderer = new PhpRenderer;
-            $configProvider = new ConfigProvider;
+        $this->app->singleton(
+            RendererInterface::class,
+            function ($app) {
+                $renderer = new PhpRenderer();
+                $configProvider = new ConfigProvider();
 
-            $config = array_merge_recursive(
-                $configProvider->getViewHelperConfig(),
-                $app['config']['zend-form']
-            );
+                $config = array_merge_recursive(
+                    $configProvider->getViewHelperConfig(),
+                    $app['config']['zend-form']
+                );
 
-            $pluginManager = new HelperPluginManager(new ServiceManager, $config);
+                $pluginManager = new HelperPluginManager(new ServiceManager(), $config);
 
-            $renderer->setHelperPluginManager($pluginManager);
+                $renderer->setHelperPluginManager($pluginManager);
 
-            return $renderer;
-        });
+                return $renderer;
+            }
+        );
     }
 }
