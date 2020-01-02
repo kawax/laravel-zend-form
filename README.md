@@ -7,6 +7,10 @@
 
 https://docs.zendframework.com/zend-form/
 
+## Laminas
+https://github.com/kawax/laravel-laminas-form
+
+
 ## Requirements
 - PHP >= 7.1
 - Laravel >= 5.5
